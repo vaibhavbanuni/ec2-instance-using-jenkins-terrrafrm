@@ -12,12 +12,8 @@ pipeline {
                 sh 'terraform init -upgrade'
             }
         }
-        stage('Plan') {
-            steps {
-                sh 'terraform plan -out main.tfplan'
-            }
-        }
         stage('Action') {
+            agent { label 'terra-node' }
             steps {
                 sh 'terraform ${tf_action} --auto-approve'
             }
