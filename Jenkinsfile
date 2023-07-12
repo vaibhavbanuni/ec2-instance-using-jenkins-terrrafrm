@@ -8,6 +8,7 @@ pipeline {
             }
         }
         stage('Init') {
+            agent { label 'terra-node' }
             steps {
                 sh 'terraform init -upgrade'
             }
